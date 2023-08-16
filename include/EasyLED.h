@@ -22,7 +22,7 @@ class EasyLED {
       return this->state;
     }
 
-    inline EasyLED::LedStates EasyLED::getStatus() {
+    inline EasyLED::LedStates getStatus() {
       return this->status;
     }
 
