@@ -1,0 +1,22 @@
+{
+  "name": "EasyLED",
+  "version": "1.0.0",
+  "description": "A \"EasyLED\" library contains usefull funciton to control simple LED using non blocking code",
+  "keywords": "easy, led, non blocking",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/Dawid-Jarczok/EasyLED.git"
+  },
+  "authors":
+  [
+    {
+      "name": "Dawid Jarczok",
+      "email": "email@email.com",
+      "maintainer": true
+    }
+  ],
+  "license": "-",
+  "frameworks": ["arduino"],
+  "platforms": "*"
+}
