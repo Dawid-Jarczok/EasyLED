@@ -46,7 +46,7 @@ void EasyLED::toggleFor(uint16_t time) {
     this->offMillis = millis() + time;
 }
 
-void EasyLED::toggleBlinkingFor(float freq = 1.0, uint16_t time) {
+void EasyLED::toggleBlinkingFor(float freq, uint16_t time) {
     this->toggleBlinking(freq);
     this->offMillis = millis() + time;
 }

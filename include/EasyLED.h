@@ -16,7 +16,7 @@ class EasyLED {
     void toggle(bool _state);
     void toggleFor(uint16_t time);
     void toggleBlinking(float freq = 1.0);
-    void toggleBlinkingFor(float freq = 1.0, uint16_t time);
+    void toggleBlinkingFor(float freq, uint16_t time);
 
     inline bool getState() {
       return this->state;
