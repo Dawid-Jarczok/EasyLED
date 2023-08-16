@@ -30,7 +30,7 @@ void EasyLED::toggle(bool _state)  {
     this->status = (EasyLED::LedStates)_state;
 }
 
-void EasyLED::toggleBlinking(float freq = 1.0) {
+void EasyLED::toggleBlinking(float freq) {
     if (freq == 0.0) {
         toggle(OFF);
         return;
