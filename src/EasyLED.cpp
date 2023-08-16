@@ -25,8 +25,10 @@ void EasyLED::toggle()  {
 }
 
 void EasyLED::toggle(bool _state)  {
-    if (this->state != _state) digitalWrite(this->pin, this->state);
-    this->state = _state;
+    if (this->state != _state) {
+        this->state = _state;
+        digitalWrite(this->pin, this->state);
+    }
     this->status = (EasyLED::LedStates)_state;
 }
 
