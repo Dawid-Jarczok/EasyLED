@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "EasyLED"
+#include "EasyLED.h"
 
 EasyLED led(25);
 
