@@ -6,6 +6,12 @@ EasyLED::EasyLED(uint8_t _pin) {
 
 void EasyLED::begin() {
     pinMode(this->pin, OUTPUT);
+    this->off();
+}
+
+void EasyLED::setOnState(bool onState) {
+    if (this->onState == onState) return;
+    this->onState = onState;
 }
 
 void EasyLED::handle() {
@@ -19,7 +25,7 @@ void EasyLED::handle() {
 }
 
 void EasyLED::on() {
-    digitalWrite(this->pin, true);
+    digitalWrite(this->pin, this->onState);
     this->state = true;
     this->status = EasyLED::STATIC;
 }
@@ -31,7 +37,7 @@ void EasyLED::on(uint16_t time) {
 }
 
 void EasyLED::off() {
-    digitalWrite(this->pin, false);
+    digitalWrite(this->pin, !this->onState);
     this->state = false;
     this->status = EasyLED::STATIC;
     this->timerStatus = false;
@@ -40,6 +46,11 @@ void EasyLED::off() {
 void EasyLED::toggle()  {
     this->state = !this->state;
     digitalWrite(this->pin, this->state);
+}
+
+void EasyLED::toggle(bool state) {
+    this->state = state;
+    digitalWrite(this->pin, !(this->onState ^ this->state));
 }
 
 void EasyLED::blink(float freq) {

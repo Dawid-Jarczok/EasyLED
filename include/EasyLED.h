@@ -11,11 +11,13 @@ class EasyLED {
     } LedStates;
 
     void begin();
+    void setOnState(bool onState);
     void handle();
     void on();
     void on(uint16_t time);
     void off();
     void toggle();
+    void toggle(bool state);
     void blink(float freq = 1.0);
     void blink(float freq, uint16_t time);
 
@@ -29,6 +31,7 @@ class EasyLED {
 
   private:
     uint8_t pin;
+    bool onState = HIGH;
     LedStates status = STATIC;
     bool state = false;
     uint16_t blinkingHalfPeriod = 500;
