@@ -10,45 +10,51 @@ void EasyLED::begin() {
 
 void EasyLED::handle() {
     static uint32_t lastMillis;
-    if (this->status == EasyLED::BLINKING) {
-        if (millis() - lastMillis >= this->blinkingHalfPeriod) {
-            lastMillis= millis();
-            this->toggle();
-        }   
+    if (this->status == EasyLED::BLINKING && millis() - lastMillis >= this->blinkingHalfPeriod) {
+        lastMillis= millis();
+        this->toggle();
     }
 
-    if (millis() > this->offMillis) this->toggle(false);
+    if (this->timerStatus && millis() > this->offMillis) this->off();
+}
+
+void EasyLED::on() {
+    digitalWrite(this->pin, true);
+    this->state = true;
+    this->status = EasyLED::STATIC;
+}
+
+void EasyLED::on(uint16_t time) {
+    this->on();
+    this->offMillis = millis() + time;
+    this->timerStatus = true;
+}
+
+void EasyLED::off() {
+    digitalWrite(this->pin, false);
+    this->state = false;
+    this->status = EasyLED::STATIC;
+    this->timerStatus = false;
 }
 
 void EasyLED::toggle()  {
-    this->toggle(!this->state);
+    this->state = !this->state;
+    digitalWrite(this->pin, this->state);
 }
 
-void EasyLED::toggle(bool _state)  {
-    if (this->state != _state) {
-        this->state = _state;
-        digitalWrite(this->pin, this->state);
-    }
-    this->status = (EasyLED::LedStates)_state;
-}
-
-void EasyLED::toggleBlinking(float freq) {
+void EasyLED::blink(float freq) {
     if (freq == 0.0) {
-        toggle(OFF);
+        this->off();
         return;
     }
     float Buff = 500.0;
     Buff /= freq;
     this->blinkingHalfPeriod = Buff;
-    this->status = BLINKING;
+    this->status = this->status = EasyLED::BLINKING;
 }
 
-void EasyLED::toggleFor(uint16_t time) {
-    this->toggle(EasyLED::ON);
+void EasyLED::blink(float freq, uint16_t time) {
+    this->blink(freq);
     this->offMillis = millis() + time;
-}
-
-void EasyLED::toggleBlinkingFor(float freq, uint16_t time) {
-    this->toggleBlinking(freq);
-    this->offMillis = millis() + time;
+    this->timerStatus = true;
 }

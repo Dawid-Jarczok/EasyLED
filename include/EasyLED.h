@@ -7,16 +7,17 @@ class EasyLED {
     EasyLED(uint8_t _pin);
 
     typedef enum {
-        OFF = 0, ON = 1, BLINKING
+        STATIC, BLINKING,
     } LedStates;
 
     void begin();
     void handle();
+    void on();
+    void on(uint16_t time);
+    void off();
     void toggle();
-    void toggle(bool _state);
-    void toggleFor(uint16_t time);
-    void toggleBlinking(float freq = 1.0);
-    void toggleBlinkingFor(float freq, uint16_t time);
+    void blink(float freq = 1.0);
+    void blink(float freq, uint16_t time);
 
     inline bool getState() {
       return this->state;
@@ -28,8 +29,9 @@ class EasyLED {
 
   private:
     uint8_t pin;
-    LedStates status = OFF;
-    bool state = OFF;
+    LedStates status = STATIC;
+    bool state = false;
     uint16_t blinkingHalfPeriod = 500;
     uint32_t offMillis;
+    bool timerStatus = false;
 };
