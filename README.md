@@ -1,5 +1,5 @@
 # EasyLED
 
-Library contains most usefull functions to control (mainly) leds.
+Library contains most usefull basic functions to control (mainly) leds.
 
-Tested on esp32, but propably will work on every board with arduino framework. 
+Tested on esp32 and arduino UNO, but propably will work on every board with arduino framework. 
