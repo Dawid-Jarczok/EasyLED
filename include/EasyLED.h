@@ -4,7 +4,9 @@
 
 class EasyLED {
   public:
-    EasyLED(uint8_t _pin);
+    EasyLED(uint8_t pin);
+
+    ~EasyLED();
 
     typedef enum {
         STATIC, BLINKING,
@@ -21,10 +23,18 @@ class EasyLED {
     void blink(float freq = 1.0);
     void blink(float freq, uint16_t time);
 
+    
+    // @return Actual led state.
     inline bool getState() {
       return this->state;
     }
 
+    // @return Pin state when led is on.
+    inline bool getOnState() {
+      return this->onState;
+    }
+
+    // @return Actual led status.
     inline EasyLED::LedStates getStatus() {
       return this->status;
     }
