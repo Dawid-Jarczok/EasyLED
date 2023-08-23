@@ -4,17 +4,20 @@
     @brief  Constructor.
     @param  pin
             Controlled pin.
-    */
+*/
 EasyLED::EasyLED(uint8_t pin) {
     this->pin = pin;
 }
 
 /*
+    @brief  Constructor.
+*/
+EasyLED::EasyLED() {}
+
+/*
     @brief  Deconstructor.
 */
-EasyLED::~EasyLED() {
-
-}
+EasyLED::~EasyLED() {}
 
 /*
     @brief  Set pin mode and turning off that pin.
@@ -23,6 +26,17 @@ void EasyLED::begin() {
     pinMode(this->pin, OUTPUT);
     this->off();
 }
+
+/*
+    @brief  Set pin mode and turning off that pin.
+    @param  pin
+            Controlled pin.
+*/
+void EasyLED::begin(uint8_t pin) {
+    this->pin = pin;
+    this->begin();
+}
+
 
 /*
     @brief  Set state in which led is on.

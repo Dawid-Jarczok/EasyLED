@@ -5,6 +5,7 @@
 class EasyLED {
   public:
     EasyLED(uint8_t pin);
+    EasyLED();
 
     ~EasyLED();
 
@@ -13,6 +14,7 @@ class EasyLED {
     } LedStates;
 
     void begin();
+    void begin(uint8_t pin);
     void setOnState(bool onState);
     void handle();
     void on();
